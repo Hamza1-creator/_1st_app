@@ -55,8 +55,8 @@ class _HomeScreenState extends State<HomeScreen> {
         },
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: "Home",
+            icon: Icon(Icons.chat_sharp),
+            label: "Chats",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
