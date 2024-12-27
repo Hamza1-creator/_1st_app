@@ -6,13 +6,13 @@ class Messages extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2, // Number of tabs
+      length: 2, 
       child: Scaffold(
         appBar: AppBar(
           bottom: const PreferredSize(
-            preferredSize: Size.fromHeight(48.0), // Set the height of the TabBar
+            preferredSize: Size.fromHeight(0.0),
             child: TabBar(
-              indicatorColor: Colors.white, // Customize the indicator
+              indicatorColor: Color.fromARGB(255, 126, 126, 126),
               tabs: [
                 Tab(text: "Chats"),
                 Tab(text: "Status"),
