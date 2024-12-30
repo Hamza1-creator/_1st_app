@@ -32,7 +32,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea( child : Scaffold(
+    return SafeArea( 
+      child : Scaffold(
      appBar: AppBar(
         title: Text(_titles[_currentIndex]), // Dynamic title based on the current tab
         actions: [
@@ -63,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
             label: "Messages",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.badge),
+            icon: Icon(Icons.shopping_bag),
             label: "Cart",
           ),
           BottomNavigationBarItem(
