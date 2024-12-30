@@ -6,7 +6,6 @@ class CallingTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Example logic for Calling Tab
     return Center(
       child: Text(
         "Make a Call from here",

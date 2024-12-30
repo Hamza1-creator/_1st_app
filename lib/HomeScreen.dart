@@ -14,7 +14,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
 
-  // List of pages (widgets) for each tab
+
   final List<Widget> _pages = [
     const Messages(),
     const CartPage(),
@@ -22,7 +22,6 @@ class _HomeScreenState extends State<HomeScreen> {
     const CallingTab(),
   ];
 
-  // Titles for each tab
   final List<String> _titles = [
     "Messages",
     "Cart",
@@ -35,12 +34,11 @@ class _HomeScreenState extends State<HomeScreen> {
     return SafeArea( 
       child : Scaffold(
      appBar: AppBar(
-        title: Text(_titles[_currentIndex]), // Dynamic title based on the current tab
+        title: Text(_titles[_currentIndex]),
         actions: [
           IconButton(
-            icon: const Icon(Icons.search), // Search icon
+            icon: const Icon(Icons.search),
             onPressed: () {
-              // Handle search button tap
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text("Search tapped")),
               );
@@ -49,13 +47,13 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
 
-      body: _pages[_currentIndex], // Dynamically switch between widgets
+      body: _pages[_currentIndex], 
       bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed, // Support more than 3 items
+        type: BottomNavigationBarType.fixed,
         currentIndex: _currentIndex,
         onTap: (index) {
           setState(() {
-            _currentIndex = index; // Update the current index
+            _currentIndex = index;
           });
         },
         items: const [

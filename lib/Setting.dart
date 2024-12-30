@@ -5,7 +5,6 @@ class SettingsTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Example logic for Settings Tab
     return Center(
       child: Text(
         "Adjust your Settings here",
