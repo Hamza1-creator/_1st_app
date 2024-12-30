@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'ChatsTab.dart';
 
 class Messages extends StatelessWidget {
   const Messages({super.key});
@@ -6,7 +7,7 @@ class Messages extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2, 
+      length: 2,
       child: Scaffold(
         appBar: AppBar(
           bottom: const PreferredSize(
@@ -22,20 +23,24 @@ class Messages extends StatelessWidget {
         ),
         body: const TabBarView(
           children: [
-            Center(
-              child: Text(
-                "Chats Tab",
-                style: TextStyle(fontSize: 24, color: Colors.blue),
-              ),
-            ),
-            Center(
-              child: Text(
-                "Status Tab",
-                style: TextStyle(fontSize: 24, color: Colors.green),
-              ),
-            ),
+            ChatsTab(),
+            StatusTab(),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class StatusTab extends StatelessWidget {
+  const StatusTab({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: Text(
+        "Status Tab",
+        style: TextStyle(fontSize: 24, color: Colors.green),
       ),
     );
   }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'Chat.dart';
-import 'ProfileTab.dart';
+import 'CartTab.dart';
 import 'Setting.dart';
 import 'callMe.dart';
 
@@ -17,7 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
   // List of pages (widgets) for each tab
   final List<Widget> _pages = [
     const Messages(),
-    const ProfileTab(),
+    const CartPage(),
     const SettingsTab(),
     const CallingTab(),
   ];
@@ -25,18 +25,29 @@ class _HomeScreenState extends State<HomeScreen> {
   // Titles for each tab
   final List<String> _titles = [
     "Messages",
-    "Profile",
+    "Cart",
     "Settings",
     "Calling",
   ];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(_titles[_currentIndex]),
-        centerTitle: true,
+    return SafeArea( child : Scaffold(
+     appBar: AppBar(
+        title: Text(_titles[_currentIndex]), // Dynamic title based on the current tab
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.search), // Search icon
+            onPressed: () {
+              // Handle search button tap
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text("Search tapped")),
+              );
+            },
+          ),
+        ],
       ),
+
       body: _pages[_currentIndex], // Dynamically switch between widgets
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed, // Support more than 3 items
@@ -52,8 +63,8 @@ class _HomeScreenState extends State<HomeScreen> {
             label: "Messages",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: "Profile",
+            icon: Icon(Icons.badge),
+            label: "Cart",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
@@ -65,6 +76,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-    );
+    ),);
   }
 }
