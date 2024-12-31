@@ -10,15 +10,17 @@ class Messages extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.grey[200],
+          backgroundColor: const Color.fromARGB(255, 77, 83, 88),
           bottom: PreferredSize(
             preferredSize: Size.fromHeight(0.0),
             child: TabBar(
+              labelColor: const Color.fromARGB(255, 236, 236, 236),
+              unselectedLabelColor: const Color.fromARGB(255, 236, 236, 236),
               indicator: UnderlineTabIndicator(
-                borderSide: BorderSide(width: 4.0, color: Colors.blue), // Thickness and color of the indicator
-                insets: EdgeInsets.symmetric(horizontal: 80.0), // Adjust padding to make the indicator narrower
+                borderSide: BorderSide(width: 4.0, color: Colors.blue),
+                insets: EdgeInsets.symmetric(horizontal: 80.0), 
               ),
-              indicatorSize: TabBarIndicatorSize.label, // Use this for the label size
+              indicatorSize: TabBarIndicatorSize.label, 
               tabs: const [
                 Tab(text: "Chats"),
                 Tab(text: "Status"),
