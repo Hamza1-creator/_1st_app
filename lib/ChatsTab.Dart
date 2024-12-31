@@ -14,28 +14,34 @@ class ChatsTab extends StatelessWidget {
       {"name": "Ahmed", "message": "Lets GO", "time": "6:00 AM"},
     ];
 
-    return ListView.builder(
-      itemCount: chats.length,
-      itemBuilder: (context, index) {
-        final chat = chats[index];
-        return ListTile(
-          leading: CircleAvatar(
-            backgroundColor: Colors.blueGrey,
-            child: Text(
-              chat["name"]![0],
-              style: const TextStyle(color: Colors.white),
+    return Scaffold(
+      backgroundColor: Colors.grey[200], // Background color of the whole screen
+      body: ListView.builder(
+        itemCount: chats.length,
+        itemBuilder: (context, index) {
+          final chat = chats[index];
+          return Card( // Add a card to customize the background color of each item
+            color: Colors.white, // Background color of each ListTile item
+            child: ListTile(
+              leading: CircleAvatar(
+                backgroundColor: Colors.blueGrey,
+                child: Text(
+                  chat["name"]![0], // First letter of the name
+                  style: const TextStyle(color: Colors.white),
+                ),
+              ),
+              title: Text(chat["name"]!),
+              subtitle: Text(chat["message"]!),
+              trailing: Text(chat["time"]!),
+              onTap: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text("Tapped on ${chat['name']}")),
+                );
+              },
             ),
-          ),
-          title: Text(chat["name"]!),
-          subtitle: Text(chat["message"]!), 
-          trailing: Text(chat["time"]!),
-          onTap: () {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text("Tapped on ${chat['name']}")),
-            );
-          },
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }

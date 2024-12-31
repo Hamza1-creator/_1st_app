@@ -33,7 +33,10 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return SafeArea( 
       child : Scaffold(
+      backgroundColor: Colors.grey[200],
      appBar: AppBar(
+      backgroundColor: Colors.grey[200],
+      toolbarHeight: 40.0,
         title: Text(_titles[_currentIndex]),
         actions: [
           IconButton(
@@ -49,6 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
       body: _pages[_currentIndex], 
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.grey[200],
         type: BottomNavigationBarType.fixed,
         currentIndex: _currentIndex,
         onTap: (index) {
