@@ -12,6 +12,9 @@ class ChatsTab extends StatelessWidget {
       {"name": "David", "message": "Check out this photo!", "time": "7:20 AM"},
       {"name": "Eve", "message": "Good morning!", "time": "6:00 AM"},
       {"name": "Ahmed", "message": "Lets GO", "time": "6:00 AM"},
+      {"name": "Alice", "message": "Hello! How are you?", "time": "10:30 AM"},
+      {"name": "Bob", "message": "Are we meeting today?", "time": "9:45 AM"},
+      {"name": "Charlie", "message": "I'll call you later.", "time": "8:15 AM"},
     ];
 
     return Scaffold(
@@ -44,15 +47,15 @@ class ChatsTab extends StatelessWidget {
         },
       ),
       floatingActionButton: Container(
-        width: 50, 
-        height: 50,
+        width: 45, 
+        height: 45,
         child: FloatingActionButton(
           onPressed: () {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(content: Text("Add new chat pressed")),
             );
           },
-          shape: Border(bottom: BorderSide(color: const Color.fromARGB(255, 56, 56, 56), width: 10)),
+          shape: Border(bottom: BorderSide(color: const Color.fromARGB(255, 56, 56, 56), width: 8)),
           backgroundColor: Colors.blue,
           child: const Icon(
             Icons.add,
