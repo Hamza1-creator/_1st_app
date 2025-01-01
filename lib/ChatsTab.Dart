@@ -25,7 +25,7 @@ class ChatsTab extends StatelessWidget {
             color: const Color.fromARGB(255, 77, 83, 88),
             child: ListTile(
               leading: CircleAvatar(
-                backgroundColor: Colors.blueGrey,
+                backgroundColor: Colors.blue,
                 child: Text(
                   chat["name"]![0],
                   style: const TextStyle(color: Colors.white),
@@ -41,8 +41,24 @@ class ChatsTab extends StatelessWidget {
               },
             ),
           );
-
         },
+      ),
+      floatingActionButton: Container(
+        width: 50, 
+        height: 50,
+        child: FloatingActionButton(
+          onPressed: () {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text("Add new chat pressed")),
+            );
+          },
+          shape: Border(bottom: BorderSide(color: const Color.fromARGB(255, 56, 56, 56), width: 10)),
+          backgroundColor: Colors.blue,
+          child: const Icon(
+            Icons.add,
+            color: Colors.white,
+          ),
+        ),
       ),
     );
   }
