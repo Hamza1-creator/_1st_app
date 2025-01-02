@@ -17,7 +17,6 @@ class ChatsTab extends StatefulWidget {
 }
 
 class _ChatTabState extends State<ChatsTab> {
-  // List of all chats
   final List<Chat> _allChats = [
     Chat(name: "John Doe", lastMessage: "Hello! How are you?", imageUrl: "https://via.placeholder.com/150", lastMessageTime : "10:30 AM"),
     Chat(name: "Jane Smith", lastMessage: "Are we meeting today?", imageUrl: "https://via.placeholder.com/150", lastMessageTime : "10:30 AM"),
@@ -28,19 +27,15 @@ class _ChatTabState extends State<ChatsTab> {
     Chat(name: "Alice", lastMessage: "Hey there!", imageUrl: "https://via.placeholder.com/150", lastMessageTime : "10:30 AM"),
     Chat(name: "Bob", lastMessage: "How's it going?", imageUrl: "https://via.placeholder.com/150", lastMessageTime : "10:30 AM"),
     Chat(name: "Tommy Shelby", lastMessage: "MachineGun or pistol ?", imageUrl: "https://via.placeholder.com/150", lastMessageTime : "10:30 AM"),
-    // Add more chats as needed
   ];
 
-  // List to hold filtered chats
   List<Chat> _filteredChats = [];
 
-  // Search text controller
   final TextEditingController _searchController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    // Initially, all chats are shown
     _filteredChats = _allChats;
     _searchController.addListener(_filterChats);
   }
@@ -48,12 +43,8 @@ class _ChatTabState extends State<ChatsTab> {
   void _filterChats() {
     String query = _searchController.text.toLowerCase();
 
-    // Filter the chats based on the search query
     setState(() {
-      _filteredChats = _allChats
-          .where((chat) =>
-              chat.name.toLowerCase().contains(query))
-          .toList();
+      _filteredChats = _allChats.where((chat) => chat.name.toLowerCase().contains(query)).toList();
     });
   }
 
@@ -89,7 +80,6 @@ class _ChatTabState extends State<ChatsTab> {
               ),
             ),
           ),
-          // Display filtered chats
           Expanded(
             child: ListView.builder(
               itemCount: _filteredChats.length,
