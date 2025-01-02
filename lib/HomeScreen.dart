@@ -14,7 +14,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
   late Future<void> _loadingFuture;
-  bool _isSearchVisible = false; // Track if the search bar is visible
+  bool _isSearchVisible = false;
   final TextEditingController _searchController = TextEditingController();
 
   final List<Widget> _pages = [
@@ -31,7 +31,6 @@ class _HomeScreenState extends State<HomeScreen> {
     "Calling",
   ];
 
- 
   Future<void> _initializeApp() async {
     await Future.delayed(const Duration(seconds: 3));
   }
@@ -49,16 +48,16 @@ class _HomeScreenState extends State<HomeScreen> {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Scaffold(
-            backgroundColor: const Color.fromARGB(255, 77, 83, 88),
+            backgroundColor: Color.fromARGB(255, 77, 83, 88),
             body: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
-                    width: 150, 
+                    width: 150,
                     child: LinearProgressIndicator(
                       valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
-                      minHeight: 3,
+                      minHeight: 3, 
                     ),
                   ),
                 ],
@@ -82,9 +81,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     color: const Color.fromARGB(255, 236, 236, 236),
                     onPressed: () {
                       setState(() {
-                        _isSearchVisible = !_isSearchVisible; // Toggle the search bar visibility
+                        _isSearchVisible = !_isSearchVisible;
                         if (!_isSearchVisible) {
-                          _searchController.clear(); // Clear the search input when closed
+                          _searchController.clear();
                         }
                       });
                     },
@@ -93,10 +92,13 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               body: Column(
                 children: [
-                  // Display search field below AppBar
-                  if (_isSearchVisible)
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  AnimatedOpacity(
+                    duration: const Duration(milliseconds: 300),
+                    opacity: _isSearchVisible ? 1.0 : 0.0,
+                    child: AnimatedContainer(
+                      duration: const Duration(milliseconds: 150),
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                      height: _isSearchVisible ? 60.0 : 0.0,
                       child: TextField(
                         controller: _searchController,
                         style: const TextStyle(color: Colors.white),
@@ -109,11 +111,13 @@ class _HomeScreenState extends State<HomeScreen> {
                             borderRadius: BorderRadius.circular(50),
                             borderSide: BorderSide.none,
                           ),
+                          contentPadding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 20.0),
                         ),
                       ),
                     ),
+                  ),
                   Expanded(
-                    child: _pages[_currentIndex], // The main content
+                    child: _pages[_currentIndex],
                   ),
                 ],
               ),
