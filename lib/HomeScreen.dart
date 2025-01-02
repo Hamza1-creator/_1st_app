@@ -14,6 +14,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
   late Future<void> _loadingFuture;
+  bool _isSearchVisible = false; // Track if the search bar is visible
+  final TextEditingController _searchController = TextEditingController();
 
   final List<Widget> _pages = [
     const Messages(),
@@ -76,17 +78,45 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 actions: [
                   IconButton(
-                    icon: const Icon(Icons.search),
+                    icon: Icon(_isSearchVisible ? Icons.close : Icons.search),
                     color: const Color.fromARGB(255, 236, 236, 236),
                     onPressed: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text("Search tapped")),
-                      );
+                      setState(() {
+                        _isSearchVisible = !_isSearchVisible; // Toggle the search bar visibility
+                        if (!_isSearchVisible) {
+                          _searchController.clear(); // Clear the search input when closed
+                        }
+                      });
                     },
                   ),
                 ],
               ),
-              body: _pages[_currentIndex],
+              body: Column(
+                children: [
+                  // Display search field below AppBar
+                  if (_isSearchVisible)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: TextField(
+                        controller: _searchController,
+                        style: const TextStyle(color: Colors.white),
+                        decoration: InputDecoration(
+                          hintText: "Search...",
+                          hintStyle: const TextStyle(color: Colors.white70),
+                          filled: true,
+                          fillColor: const Color.fromARGB(255, 66, 73, 77),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(50),
+                            borderSide: BorderSide.none,
+                          ),
+                        ),
+                      ),
+                    ),
+                  Expanded(
+                    child: _pages[_currentIndex], // The main content
+                  ),
+                ],
+              ),
               bottomNavigationBar: BottomNavigationBar(
                 backgroundColor: const Color.fromARGB(255, 77, 83, 88),
                 selectedItemColor: const Color.fromARGB(255, 236, 236, 236),
