@@ -45,16 +45,14 @@ class ChatScreen extends StatelessWidget {
       ),
       body: Stack(
         children: [
-          // Background Image
           Container(
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/background.jpg'), // Replace with your image path
-                fit: BoxFit.cover, // Ensure the image covers the screen
+                image: AssetImage('assets/background1.jpeg'),
+                fit: BoxFit.cover,
               ),
             ),
           ),
-          // Chat Content
           Column(
             children: [
               Expanded(
