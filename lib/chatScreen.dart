@@ -8,94 +8,110 @@ class ChatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-              appBar: AppBar(
-          leading: IconButton(
-            icon: const Icon(
-              Icons.arrow_back,
-              color: Colors.white,
-            ),
-            onPressed: () {
-              Navigator.pop(context);
-            },
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.white,
           ),
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.start, 
-            children: [
-              CircleAvatar(
-                backgroundColor: Colors.blue,
-                child: Text(
-                  chatName[0],
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              const SizedBox(width: 25), 
-              Text(
-                chatName,
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            CircleAvatar(
+              backgroundColor: Colors.blue,
+              child: Text(
+                chatName[0],
                 style: const TextStyle(
-                  color: Color.fromARGB(255, 236, 236, 236),
+                  color: Colors.white,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-            ],
-          ),
-          backgroundColor: const Color.fromARGB(255, 66, 73, 77),
+            ),
+            const SizedBox(width: 25),
+            Text(
+              chatName,
+              style: const TextStyle(
+                color: Color.fromARGB(255, 236, 236, 236),
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
         ),
-
-
-      backgroundColor: const Color.fromARGB(255, 77, 83, 88),
-      body: Column(
+        backgroundColor: const Color.fromARGB(255, 66, 73, 77),
+      ),
+      body: Stack(
         children: [
-          Expanded(
-            child: ListView(
-              padding: const EdgeInsets.all(8.0),
-              children: const [
-                ChatBubble(
-                  message: "Hi! How are you?",
-                  isSender: false,
-                ),
-                ChatBubble(
-                  message: "I'm good, thank you!",
-                  isSender: true,
-                ),
-                ChatBubble(
-                  message: "What about you?",
-                  isSender: false,
-                ),
-              ],
+          // Background Image
+          Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/background.jpg'), // Replace with your image path
+                fit: BoxFit.cover, // Ensure the image covers the screen
+              ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    decoration: InputDecoration(
-                      hintText: "Type a message...",
-                      filled: true,
-                      fillColor: Colors.white,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
-                        borderSide: BorderSide.none,
+          // Chat Content
+          Column(
+            children: [
+              Expanded(
+                child: ListView(
+                  padding: const EdgeInsets.all(8.0),
+                  children: const [
+                    ChatBubble(
+                      message: "Hi! How are you?",
+                      isSender: false,
+                    ),
+                    ChatBubble(
+                      message: "I'm good, thank you!",
+                      isSender: true,
+                    ),
+                    ChatBubble(
+                      message: "What about you?",
+                      isSender: false,
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: TextField(
+                        style: const TextStyle(color: Colors.white),
+                        decoration: InputDecoration(
+                          hintText: "Type a message...",
+                          hintStyle: const TextStyle(color: Colors.white70),
+                          filled: true,
+                          fillColor: const Color.fromARGB(255, 66, 73, 77),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(50),
+                            borderSide: BorderSide.none,
+                          ),
+                          contentPadding: const EdgeInsets.symmetric(
+                            vertical: 16.0,
+                            horizontal: 20.0,
+                          ),
+                        ),
                       ),
                     ),
-                  ),
+                    const SizedBox(width: 8),
+                    CircleAvatar(
+                      radius: 25,
+                      backgroundColor: Colors.blue,
+                      child: IconButton(
+                        icon: const Icon(Icons.send, color: Colors.white),
+                        onPressed: () {},
+                      ),
+                    ),
+                  ],
                 ),
-                const SizedBox(width: 8),
-                CircleAvatar(
-                  radius: 25,
-                  backgroundColor: Colors.blue,
-                  child: IconButton(
-                    icon: const Icon(Icons.send, color: Colors.white),
-                    onPressed: () {
-                    },
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ],
       ),
