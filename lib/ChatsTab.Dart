@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'ChatScreen.dart';
 
 class Chat {
   final String name;
@@ -6,7 +7,12 @@ class Chat {
   final String imageUrl;
   final String lastMessageTime;
 
-  Chat({required this.name, required this.lastMessage, required this.imageUrl, required this.lastMessageTime});
+  Chat({
+    required this.name,
+    required this.lastMessage,
+    required this.imageUrl,
+    required this.lastMessageTime,
+  });
 }
 
 class ChatsTab extends StatefulWidget {
@@ -30,7 +36,6 @@ class _ChatTabState extends State<ChatsTab> {
   ];
 
   List<Chat> _filteredChats = [];
-
   final TextEditingController _searchController = TextEditingController();
 
   @override
@@ -61,7 +66,6 @@ class _ChatTabState extends State<ChatsTab> {
       backgroundColor: const Color.fromARGB(255, 77, 83, 88),
       body: Column(
         children: [
-          // Search bar
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
@@ -90,7 +94,10 @@ class _ChatTabState extends State<ChatsTab> {
                     backgroundColor: Colors.blue,
                     child: Text(
                       chat.name[0],
-                      style: const TextStyle(color: Colors.white),
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                   title: Text(
@@ -101,10 +108,16 @@ class _ChatTabState extends State<ChatsTab> {
                     chat.lastMessage,
                     style: const TextStyle(color: Color.fromARGB(255, 207, 207, 207)),
                   ),
-                  trailing: Text(chat.lastMessageTime, style: TextStyle(color: const Color.fromARGB(255, 207, 207, 207))),
+                  trailing: Text(
+                    chat.lastMessageTime,
+                    style: const TextStyle(color: Color.fromARGB(255, 207, 207, 207)),
+                  ),
                   onTap: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text("Tapped on ${chat.name}")),
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ChatScreen(chatName: chat.name),
+                      ),
                     );
                   },
                 );
