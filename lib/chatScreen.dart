@@ -11,15 +11,15 @@ class ChatScreen extends StatelessWidget {
               appBar: AppBar(
           leading: IconButton(
             icon: const Icon(
-              Icons.arrow_back, // Custom back icon
+              Icons.arrow_back,
               color: Colors.white,
             ),
             onPressed: () {
-              Navigator.pop(context); // Navigate back
+              Navigator.pop(context);
             },
           ),
           title: Row(
-            mainAxisAlignment: MainAxisAlignment.start, // Aligns items to the start
+            mainAxisAlignment: MainAxisAlignment.start, 
             children: [
               CircleAvatar(
                 backgroundColor: Colors.blue,
@@ -31,7 +31,7 @@ class ChatScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(width: 25), // Adjust the spacing here
+              const SizedBox(width: 25), 
               Text(
                 chatName,
                 style: const TextStyle(
