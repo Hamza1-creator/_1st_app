@@ -8,14 +8,44 @@ class ChatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          chatName,
-          style: const TextStyle(fontWeight: FontWeight.bold),
+              appBar: AppBar(
+          leading: IconButton(
+            icon: const Icon(
+              Icons.arrow_back, // Custom back icon
+              color: Colors.white,
+            ),
+            onPressed: () {
+              Navigator.pop(context); // Navigate back
+            },
+          ),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.start, // Aligns items to the start
+            children: [
+              CircleAvatar(
+                backgroundColor: Colors.blue,
+                child: Text(
+                  chatName[0],
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              const SizedBox(width: 25), // Adjust the spacing here
+              Text(
+                chatName,
+                style: const TextStyle(
+                  color: Color.fromARGB(255, 236, 236, 236),
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+          backgroundColor: const Color.fromARGB(255, 66, 73, 77),
         ),
-        backgroundColor: const Color.fromARGB(255, 77, 83, 88),
-      ),
-      backgroundColor: const Color.fromARGB(255, 50, 50, 50),
+
+
+      backgroundColor: const Color.fromARGB(255, 77, 83, 88),
       body: Column(
         children: [
           Expanded(
