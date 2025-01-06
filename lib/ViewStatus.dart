@@ -35,105 +35,94 @@ class _ViewStatusState extends State<ViewStatus> with SingleTickerProviderStateM
     super.dispose();
   }
 
+  void _pauseProgress() {
+    _animationController.stop(); // Pause the progress
+  }
+
+  void _resumeProgress() {
+    _animationController.forward(); // Resume the progress
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black,
-      body: Stack(
-        children: [
-    // Background Color
-    Container(
-      color: Colors.black,
-    ),
-
-    // Center the Status Image
-    Center(
-      child: Container(
-        width: MediaQuery.of(context).size.width * 0.8, // Make image smaller
-        height: MediaQuery.of(context).size.height * 0.5, // Adjust image height
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: NetworkImage(widget.imageUrl),
-            fit: BoxFit.cover,
-          ),
-          borderRadius: BorderRadius.circular(20), // Rounded corners
-        ),
-      ),
-    ),
-
-    // Progress Indicator and User Info
-    Positioned(
-      top: 30, // Place progress bar higher
-      left: 10,
-      right: 10,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Progress Bar
-          LinearProgressIndicator(
-            value: _animationController.value,
-            backgroundColor: Colors.white38,
-            valueColor: const AlwaysStoppedAnimation<Color>(Colors.white),
-          ),
-          const SizedBox(height: 10),
-
-          // User Info
-          Row(
-            children: [
-              CircleAvatar(
-                backgroundImage: NetworkImage(widget.imageUrl),
-              ),
-              const SizedBox(width: 10),
-              Text(
-                widget.userName,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    ),
-
-          // Navigation Buttons
-          Row(
-            children: [
-              // Go to Previous Status
-              Expanded(
-                child: GestureDetector(
-                  onTap: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text("Previous status (not implemented)")),
-                    );
-                  },
-                ),
-              ),
-              // Go to Next Status
-              Expanded(
-                child: GestureDetector(
-                  onTap: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text("Next status (not implemented)")),
-                    );
-                  },
-                ),
-              ),
-            ],
-          ),
-
-          // Close Button
-          Positioned(
-            top: 40,
-            right: 10,
-            child: IconButton(
-              icon: const Icon(Icons.close, color: Colors.white),
-              onPressed: () => Navigator.pop(context),
+    return GestureDetector(
+      onTapDown: (details) => _pauseProgress(), // Pause when pressed
+      onTapUp: (details) => _resumeProgress(), // Resume when released
+      child: Scaffold(
+        backgroundColor: const Color.fromARGB(255, 59, 63, 66),
+        body: Stack(
+          children: [
+            // Background Color
+            Container(
+              color: const Color.fromARGB(255, 59, 63, 66),
             ),
-          ),
-        ],
+
+            // Center the Status Image
+            Center(
+              child: Container(
+                width: MediaQuery.of(context).size.width * 0.9, // Make image smaller
+                height: MediaQuery.of(context).size.height * 0.8, // Adjust image height
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: NetworkImage(widget.imageUrl),
+                    fit: BoxFit.cover,
+                  ),
+                  borderRadius: BorderRadius.circular(20), // Rounded corners
+                ),
+              ),
+            ),
+
+            // Progress Indicator and User Info
+            Positioned(
+              top: 30, // Place progress bar higher
+              left: 10,
+              right: 10,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Progress Bar
+                  AnimatedBuilder(
+                    animation: _animationController,
+                    builder: (context, child) => LinearProgressIndicator(
+                      value: _animationController.value,
+                      backgroundColor: Colors.white38,
+                      valueColor: const AlwaysStoppedAnimation<Color>(Colors.white),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+
+                  // User Info
+                  Row(
+                    children: [
+                      CircleAvatar(
+                        backgroundImage: NetworkImage(widget.imageUrl),
+                      ),
+                      const SizedBox(width: 10),
+                      Text(
+                        widget.userName,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+
+            // Close Button
+            Positioned(
+              top: 40,
+              right: 10,
+              child: IconButton(
+                icon: const Icon(Icons.close, color: Colors.white),
+                onPressed: () => Navigator.pop(context),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
