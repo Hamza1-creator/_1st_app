@@ -6,10 +6,9 @@ class StatusTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 250, 250, 250),
+      backgroundColor: const Color.fromARGB(255, 77, 83, 88),
       body: ListView(
         children: [
-          // Your Status Section
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: Row(
@@ -18,7 +17,7 @@ class StatusTab extends StatelessWidget {
                   children: [
                     CircleAvatar(
                       radius: 30,
-                      backgroundImage: const AssetImage('assets/your_profile.jpg'), // Replace with your image
+                      backgroundImage: const AssetImage('assets/your_profile.jpg'),
                     ),
                     Positioned(
                       bottom: 0,
@@ -28,7 +27,7 @@ class StatusTab extends StatelessWidget {
                         backgroundColor: Colors.white,
                         child: Icon(
                           Icons.add,
-                          color: Colors.green[600],
+                          color: Colors.blue,
                           size: 18,
                         ),
                       ),
@@ -41,12 +40,12 @@ class StatusTab extends StatelessWidget {
                   children: const [
                     Text(
                       "My Status",
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color:  Color.fromARGB(255, 236, 236, 236)),
                     ),
                     SizedBox(height: 3),
                     Text(
                       "Tap to add status update",
-                      style: TextStyle(fontSize: 14, color: Colors.grey),
+                      style: TextStyle(fontSize: 14, color: Color.fromARGB(255, 207, 207, 207)),
                     ),
                   ],
                 ),
@@ -55,12 +54,11 @@ class StatusTab extends StatelessWidget {
           ),
           const Divider(),
 
-          // Recent Updates Section
           const Padding(
             padding: EdgeInsets.all(10.0),
             child: Text(
               "Recent updates",
-              style: TextStyle(fontSize: 14, color: Colors.grey, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 14, color: Color.fromARGB(255, 207, 207, 207), fontWeight: FontWeight.bold),
             ),
           ),
           ..._buildStatusList(),
@@ -69,30 +67,36 @@ class StatusTab extends StatelessWidget {
       floatingActionButton: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          FloatingActionButton(
-            heroTag: "edit",
-            backgroundColor: Colors.grey[300],
-            onPressed: () {
-              // Add functionality for editing status
-            },
-            shape: Border(bottom: BorderSide(color: const Color.fromARGB(255, 56, 56, 56), width: 0)),
-            child: const Icon(Icons.edit, color: Colors.black),
+          SizedBox(
+            width: 40,
+            height: 40,
+            child: FloatingActionButton(
+              heroTag: "edit",
+              backgroundColor: Colors.grey[300],
+              shape: Border(bottom: BorderSide(color: const Color.fromARGB(255, 56, 56, 56))),
+              onPressed: () {
+              },
+              child: const Icon(Icons.edit, color: Colors.black, size: 18),
+            ),
           ),
           const SizedBox(
-            width: 50, 
-            height: 50,),
+            height: 10,
+          ),
           FloatingActionButton(
             heroTag: "camera",
             onPressed: () {
               ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text("Add new chat pressed")),
-            );
-            },shape: Border(bottom: BorderSide(color: const Color.fromARGB(255, 56, 56, 56), width: 10)),
-             backgroundColor: Colors.blue,
+                const SnackBar(content: Text("Add new chat pressed")),
+              );
+            },
+            backgroundColor: Colors.blue,
+            shape: Border(bottom: BorderSide(color: const Color.fromARGB(255, 56, 56, 56), width: 10)),
             child: const Icon(Icons.camera_alt, color: Colors.white),
           ),
         ],
       ),
+
+
     );
   }
 
@@ -101,7 +105,7 @@ class StatusTab extends StatelessWidget {
       {
         "name": "John Doe",
         "time": "Today, 10:30 AM",
-        "image": "assets/john.jpg", // Replace with actual paths
+        "image": "assets/john.jpg",
       },
       {
         "name": "Jane Smith",
@@ -123,11 +127,11 @@ class StatusTab extends StatelessWidget {
               ),
               title: Text(
                 status['name']!,
-                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color:  Color.fromARGB(255, 236, 236, 236)),
               ),
               subtitle: Text(
                 status['time']!,
-                style: const TextStyle(fontSize: 14, color: Colors.grey),
+                style: const TextStyle(fontSize: 14, color: Color.fromARGB(255, 207, 207, 207)),
               ),
               onTap: () {
                 // // Add functionality to view status
