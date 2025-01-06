@@ -126,6 +126,23 @@ class _ChatTabState extends State<ChatsTab> {
           ),
         ],
       ),
+      floatingActionButton: SizedBox(
+        width: 50, 
+        height: 50,
+        child: FloatingActionButton(
+          onPressed: () {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text("Add new chat pressed")),
+            );
+          },
+          shape: Border(bottom: BorderSide(color: const Color.fromARGB(255, 56, 56, 56), width: 10)),
+          backgroundColor: Colors.blue,
+          child: const Icon(
+            Icons.add,
+            color: Colors.white,
+          ),
+        ),
+      ),
     );
   }
 }
