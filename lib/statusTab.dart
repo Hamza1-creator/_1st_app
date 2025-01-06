@@ -76,6 +76,9 @@ class StatusTab extends StatelessWidget {
               backgroundColor: Colors.grey[300],
               shape: Border(bottom: BorderSide(color: const Color.fromARGB(255, 56, 56, 56))),
               onPressed: () {
+                 ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text("Custom status button pressed")),
+              );
               },
               child: const Icon(Icons.edit, color: Colors.black, size: 18),
             ),
@@ -87,7 +90,7 @@ class StatusTab extends StatelessWidget {
             heroTag: "camera",
             onPressed: () {
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text("Add new chat pressed")),
+                const SnackBar(content: Text("Canera button pressed")),
               );
             },
             backgroundColor: Colors.blue,
@@ -106,21 +109,21 @@ class StatusTab extends StatelessWidget {
       {
         "name": "John Doe",
         "time": "Today, 10:30 AM",
-        "image": "assets/background.jpeg",
+        "image": "assets/background1.jpeg",
       },
       {
         "name": "Jane Smith",
         "time": "Today, 9:15 AM",
-        "image": "assets/jane.jpg",
+        "image": "assets/background1.jpeg",
       },
       {
         "name": "Alex Brown",
         "time": "Yesterday, 5:45 PM",
-        "image": "assets/alex.jpg",
+        "image": "",
       },
     ];
 
-    return recentStatuses.map((status) => ListTile(
+    return recentStatuses.where((status)=> status['image'] != null && status['image'] != "").map((status) => ListTile(
               leading: CircleAvatar(
                 radius: 30,
                 backgroundImage: AssetImage(status['image']!),
@@ -144,7 +147,6 @@ class StatusTab extends StatelessWidget {
                     ),
                   );
                 },
-                ))
-        .toList();
+                )).toList();
   }
 }
