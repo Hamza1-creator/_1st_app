@@ -120,8 +120,7 @@ class StatusTab extends StatelessWidget {
       },
     ];
 
-    return recentStatuses
-        .map((status) => ListTile(
+    return recentStatuses.map((status) => ListTile(
               leading: CircleAvatar(
                 radius: 30,
                 backgroundImage: AssetImage(status['image']!),
@@ -139,14 +138,13 @@ class StatusTab extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => ViewStatus(
-                        imageUrl: status['image']!, // Pass the status image URL
-                        userName: status['name']!, // Pass the user's name
+                        imageUrl: status['image']!,
+                        userName: status['name']!,
                       ),
                     ),
                   );
                 },
-
-            ))
+                ))
         .toList();
   }
 }
