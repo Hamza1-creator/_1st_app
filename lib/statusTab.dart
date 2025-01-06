@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'ViewStatus.dart';
 
 class StatusTab extends StatelessWidget {
   const StatusTab({super.key});
@@ -61,7 +62,7 @@ class StatusTab extends StatelessWidget {
               style: TextStyle(fontSize: 14, color: Color.fromARGB(255, 207, 207, 207), fontWeight: FontWeight.bold),
             ),
           ),
-          ..._buildStatusList(),
+          ..._buildStatusList(context),
         ],
       ),
       floatingActionButton: Column(
@@ -100,12 +101,12 @@ class StatusTab extends StatelessWidget {
     );
   }
 
-  List<Widget> _buildStatusList() {
+  List<Widget> _buildStatusList(context) {
     final List<Map<String, String>> recentStatuses = [
       {
         "name": "John Doe",
         "time": "Today, 10:30 AM",
-        "image": "assets/john.jpg",
+        "image": "assets/background.jpeg",
       },
       {
         "name": "Jane Smith",
@@ -133,12 +134,18 @@ class StatusTab extends StatelessWidget {
                 status['time']!,
                 style: const TextStyle(fontSize: 14, color: Color.fromARGB(255, 207, 207, 207)),
               ),
-              onTap: () {
-                // // Add functionality to view status
-                // ScaffoldMessenger.of(context).showSnackBar(
-                //   SnackBar(content: Text("Viewing ${status['name']}'s status")),
-                // );
-              },
+             onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ViewStatus(
+                        imageUrl: status['image']!, // Pass the status image URL
+                        userName: status['name']!, // Pass the user's name
+                      ),
+                    ),
+                  );
+                },
+
             ))
         .toList();
   }
