@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'ViewStatus.dart';
+import 'camera.dart';
 
 class StatusTab extends StatelessWidget {
   const StatusTab({super.key});
@@ -86,17 +87,18 @@ class StatusTab extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          FloatingActionButton(
-            heroTag: "camera",
-            onPressed: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text("Canera button pressed")),
-              );
-            },
-            backgroundColor: Colors.blue,
-            shape: Border(bottom: BorderSide(color: const Color.fromARGB(255, 56, 56, 56), width: 10)),
-            child: const Icon(Icons.camera_alt, color: Colors.white),
-          ),
+                    FloatingActionButton(
+              heroTag: "camera",
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const CameraButton()),
+                );
+              },
+              backgroundColor: Colors.blue,
+              shape: const RoundedRectangleBorder(),
+              child: const Icon(Icons.camera_alt, color: Colors.white),
+            ),
         ],
       ),
 

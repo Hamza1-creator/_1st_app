@@ -55,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   SizedBox(
                     width: 150, 
                     child: LinearProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+                      valueColor: AlwaysStoppedAnimation<Color>(Color.fromRGBO(33, 150, 243, 1)),
                       minHeight: 3,
                     ),
                   ),
