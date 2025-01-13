@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'Chat.dart';
 import 'CartTab.dart';
 import 'Setting.dart';
-import 'callMe.dart';
+import 'callLog.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -19,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
     const Messages(),
     const CartPage(),
     const SettingsTab(),
-    const CallingTab(),
+    const Calllog(),
   ];
 
   final List<String> _titles = [

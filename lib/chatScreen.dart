@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'callMe.dart';
 
 class ChatScreen extends StatelessWidget {
   final String chatName;
@@ -38,6 +39,16 @@ class ChatScreen extends StatelessWidget {
                 color: Color.fromARGB(255, 236, 236, 236),
                 fontWeight: FontWeight.bold,
               ),
+            ),
+            const Spacer(),
+            IconButton(
+              icon: const Icon(Icons.call, color: Colors.white),
+              onPressed: () {
+               Navigator.push(context,
+                    MaterialPageRoute(
+                      builder: (context) => CallingTab(callerName: chatName, callerImageUrl: "",),
+                    ));
+              },
             ),
           ],
         ),

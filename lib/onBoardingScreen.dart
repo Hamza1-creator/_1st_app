@@ -107,7 +107,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 }
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
+                backgroundColor: const Color.fromRGBO(33, 150, 243, 1),
                 minimumSize: const Size(double.infinity, 50),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(25), 
