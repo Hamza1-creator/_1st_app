@@ -46,22 +46,23 @@ class _HomeScreenState extends State<HomeScreen> {
       future: _loadingFuture,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Scaffold(
+          return Scaffold(
             backgroundColor: const Color.fromARGB(255, 77, 83, 88),
             body: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
-                    width: 150, 
-                    child: LinearProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(Color.fromRGBO(33, 150, 243, 1)),
-                      minHeight: 3,
+                    width: 150,
+                    height: 150,
+                    child: Image.asset(
+                      'assets/LOGO.png',
                     ),
                   ),
                 ],
               ),
             ),
+
           );
         } else {
           return SafeArea(
